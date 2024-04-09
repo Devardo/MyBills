@@ -24,7 +24,7 @@ textract = boto3.client('textract')
 
 # Define the S3 bucket and object key for the invoice PDF
 bucket_name = '6814a-bills'
-object_key = 'Xfinity/Xfinity_March_2024_pg3.jpg'
+object_key = 'Waste/Diamond_Disposal.jpg'
 
 response = textract.analyze_document(
     Document={
