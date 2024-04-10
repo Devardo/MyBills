@@ -15,7 +15,7 @@ def get_all_providers():
 
 
 
-Providers =[
+providers =[
     {"Name": "Cobb County Water System", "Category": "Water"},
     {"Name": "Greystone Power", "Category": "Power"},
     {"Name": "Austell Gas", "Category": "Gas"},
@@ -25,4 +25,10 @@ Providers =[
    ]
 
 
-print(Providers)
+my_providers = [provider['Name'] for provider in providers]
+
+for line in lines:
+    if line in my_providers:
+        bill_povider = line
+
+print ('Austell Gas' in my_providers)

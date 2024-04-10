@@ -4,3 +4,9 @@ output.json
 textract_response.json
 service_provider_test.py
 main.py
+test_calc.py
+calc.py
+Bills
+launch.json
+.vscode
+__pycache__
