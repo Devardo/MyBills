@@ -29,6 +29,15 @@ def map_word_id(response):
             word_map[block["Id"]] = block["SelectionStatus"]
     return word_map
 
+def map_line_id(response):
+    line_map = {}
+    for block in response["Blocks"]:
+        if block["BlockType"] == "LINE":
+            line_map[block["Id"]] = block["Text"]
+        if block["BlockType"] == "SELECTION_ELEMENT":
+            line_map[block["Id"]] = block["SelectionStatus"]
+    return line_map
+
 
 def extract_table_info(response, word_map):
     row = []
