@@ -1,14 +1,6 @@
-"""
--*- coding: utf-8 -*-
-========================
-AWS Lambda
-========================
-Contributor: Chirag Rathod (Srce Cde)
-========================
-"""
-
 import json
 import boto3
+from file_dialog_test import open_file_dialog
 from parser import (
     extract_text,
     map_word_id,
@@ -22,9 +14,23 @@ from parser import (
 # Initialize the Textract client
 textract = boto3.client('textract')
 
-# Define the S3 bucket and object key for the invoice PDF
+# Define the S3 bucket 
 bucket_name = '6814a-bills'
-object_key = 'Water/Water_July_2020.jpg'
+# object_key = 'Water/Water_July_2020.jpg'
+
+
+
+# Upload file to S3
+def upload_to_s3(file_path, bucket_name, object_name):
+    # Create an S3 client
+    s3 = boto3.client('s3')
+
+    # Upload the file to the specified bucket and object name
+    try:
+        s3.upload_file(file_path, bucket_name, object_name)
+        print("File uploaded successfully to S3 bucket:", bucket_name)
+    except Exception as e:
+        print("Error uploading file to S3 bucket:", e)
 
 def textract_data():
     response = textract.analyze_document(

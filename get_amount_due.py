@@ -2,17 +2,22 @@ import json
 from full_response import response
 from parser import map_line_id
 
-response_data = response
-due_synonyms = ["rate", 'Amount due', "New"]
+due_synonyms = ["rate", 'amount due', "total due"]
 
 
-with open('output.json', 'r') as key_values:
-    data = json.load(key_values)
+def get_amount_due():
+    with open('output.json', 'r') as key_values:
+        data = json.load(key_values)
 
-keys = data.keys()
+    keys = data.keys()
 
-for key in keys:
-    if key in due_synonyms:
-        total_key = key
+    for key in keys:
+        if key.lower() in due_synonyms:
+            amount_due = data[key]
+            return amount_due
+       
 
-print(total_key+':', data[total_key])
+    
+amount_due = get_amount_due()
+print(amount_due)
+
